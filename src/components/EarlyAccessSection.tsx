@@ -12,6 +12,7 @@ const EarlyAccessSection = () => {
     email: "",
     website: "",
     category: "",
+    phoneNumber: "",
     message: "",
   });
 
@@ -27,6 +28,7 @@ const EarlyAccessSection = () => {
       email: "",
       website: "",
       category: "",
+      phoneNumber: "",
       message: "",
     });
   };
@@ -142,19 +144,36 @@ const EarlyAccessSection = () => {
                   </div>
                 </div>
 
-                <div>
-                  <label htmlFor="category" className="block text-sm font-medium text-foreground mb-2">
-                    Product Category *
-                  </label>
-                  <Input
-                    id="category"
-                    name="category"
-                    value={formData.category}
-                    onChange={handleChange}
-                    required
-                    placeholder="e.g., Skincare, Food & Beverages, Wellness"
-                    className="bg-secondary/50"
-                  />
+                <div className="grid sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="category" className="block text-sm font-medium text-foreground mb-2">
+                      Product Category *
+                    </label>
+                    <Input
+                      id="category"
+                      name="category"
+                      value={formData.category}
+                      onChange={handleChange}
+                      required
+                      placeholder="e.g., Skincare, Wellness"
+                      className="bg-secondary/50"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="phoneNumber" className="block text-sm font-medium text-foreground mb-2">
+                      Phone Number *
+                    </label>
+                    <Input
+                      id="phoneNumber"
+                      name="phoneNumber"
+                      type="tel"
+                      value={formData.phoneNumber}
+                      onChange={handleChange}
+                      required
+                      placeholder="+91 98765 43210"
+                      className="bg-secondary/50"
+                    />
+                  </div>
                 </div>
 
                 <div>
