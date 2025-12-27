@@ -1,5 +1,4 @@
 import { Leaf, Heart, BookOpen, Store } from "lucide-react";
-import logoIcon from "@/assets/logo-icon.jpeg";
 
 const features = [
   {
@@ -35,7 +34,7 @@ const UniqueSection = () => {
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-16">
           <div className="inline-flex items-center gap-2 mb-6">
-            <img src={logoIcon} alt="" className="w-8 h-8" />
+            <img src="https://setmycart.blob.core.windows.net/smcstage//12-27-2025/678db332160d47b4ad3aa6811d91aac2/WhatsApp_Image_2025-12-27_at_12.21.44_PM-removebg-preview.png" alt="" className="w-8 h-8" />
             <span className="text-sm font-medium text-primary uppercase tracking-widest">
               What Makes Us Unique
             </span>

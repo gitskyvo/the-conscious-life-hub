@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import logoIcon from "@/assets/logo-icon.jpeg";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
@@ -39,7 +38,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2">
-            <img src={logoIcon} alt="The Conscious Life" className="h-10 w-10" />
+            <img src="https://setmycart.blob.core.windows.net/smcstage//12-27-2025/678db332160d47b4ad3aa6811d91aac2/WhatsApp_Image_2025-12-27_at_12.21.44_PM-removebg-preview.png" alt="The Conscious Life" className="h-10 w-10" />
             <span className="font-display text-lg text-foreground hidden sm:block">
               The Conscious Life
             </span>
