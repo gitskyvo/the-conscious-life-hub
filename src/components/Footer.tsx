@@ -1,8 +1,7 @@
-import logoFull from "@/assets/logo-full.jpeg";
 import { Mail, MapPin } from "lucide-react";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  const currentYear = 2026;
 
   return (
     <footer className="bg-foreground text-primary-foreground py-16">
@@ -12,9 +11,9 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-12 pb-12 border-b border-primary-foreground/10">
             <div>
               <img
-                src={logoFull}
+                src="https://setmycart.blob.core.windows.net/smcstage//12-27-2025/d1b3dcbdb0184affb67e4789c4a58907/WhatsApp_Image_2025-12-27_at_12.21.45_PM-removebg-preview.png"
                 alt="The Conscious Life"
-                className="h-12 mb-4 brightness-0 invert"
+                className="h-12 mb-4"
               />
               <p className="text-primary-foreground/70 max-w-md">
                 A premium discovery destination for conscious brands and health-conscious consumers.

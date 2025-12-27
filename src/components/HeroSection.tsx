@@ -1,4 +1,3 @@
-import logoFull from "@/assets/logo-full.jpeg";
 import heroStore from "@/assets/hero-store.jpg";
 import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
@@ -26,7 +25,7 @@ const HeroSection = () => {
           {/* Logo */}
           <div className="animate-fade-up opacity-0 mb-8">
             <img
-              src={logoFull}
+              src="https://setmycart.blob.core.windows.net/smcstage//12-27-2025/d1b3dcbdb0184affb67e4789c4a58907/WhatsApp_Image_2025-12-27_at_12.21.45_PM-removebg-preview.png"
               alt="The Conscious Life"
               className="h-20 md:h-28 mx-auto"
             />
@@ -60,18 +59,6 @@ const HeroSection = () => {
               Learn More
             </Button>
           </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-fade-in opacity-0 delay-500">
-          <button
-            onClick={() => scrollToSection("unique")}
-            className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
-            aria-label="Scroll to learn more"
-          >
-            <span className="text-sm font-medium tracking-wide uppercase">Discover</span>
-            <ArrowDown className="w-5 h-5 animate-bounce" />
-          </button>
         </div>
       </div>
     </section>
