@@ -4,6 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
 import { CheckCircle2, ArrowRight } from "lucide-react";
+import HubspotAutoForm from "./HubspotForm";
 
 const EarlyAccessSection = () => {
   const [formData, setFormData] = useState({
@@ -78,7 +79,8 @@ const EarlyAccessSection = () => {
 
             {/* Right Form */}
             <div className="bg-background rounded-3xl p-8 md:p-10 shadow-elevated border border-border/50">
-              <h3 className="font-display text-2xl text-foreground mb-2">Apply Now</h3>
+              <HubspotAutoForm/>
+              {/* <h3 className="font-display text-2xl text-foreground mb-2">Apply Now</h3>
               <p className="text-muted-foreground mb-8">Tell us about your brand</p>
 
               <form onSubmit={handleSubmit} className="space-y-5">
@@ -195,7 +197,9 @@ const EarlyAccessSection = () => {
                   Submit Application
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
-              </form>
+              </form> */}
+              {/* <script src="https://js-na2.hsforms.net/forms/embed/244907953.js" defer></script> <div className="hs-form-frame" data-region="na2" data-form-id="d8e8aee4-29fb-4ff6-b990-fccc1bf4f7e8" data-portal-id="244907953"></div> */}
+
             </div>
           </div>
         </div>
