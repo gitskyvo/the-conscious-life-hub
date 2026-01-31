@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Store, TrendingUp, Users, Heart, CheckCircle2, MapPin, ArrowRight } from "lucide-react";
 import "./Franchise.css";
+import retailershop from "@/assets/retailershop.jpg";
 
 const Franchise = () => {
   // Scroll to top on mount
@@ -14,7 +15,7 @@ const Franchise = () => {
 
   const handleApplyClick = () => {
     // Redirect to Google Form URL
-    window.location.href = "https://forms.google.com/your-form-url"; 
+    window.location.href = "https://forms.gle/vfHrsq9u45Wo8qbEA"; 
   };
 
   return (
@@ -76,7 +77,7 @@ const Franchise = () => {
           </div>
           <div className="relative aspect-square md:aspect-auto md:h-[600px] bg-muted rounded-2xl overflow-hidden shadow-lg">
              <img 
-               src="/src/assets/retailershop.webp" 
+               src={retailershop}
                alt="Conscious Lifestyle" 
                className="object-cover w-full h-full opacity-90 transition-transform duration-700 hover:scale-105"
              />

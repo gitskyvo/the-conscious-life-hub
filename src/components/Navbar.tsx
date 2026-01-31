@@ -7,51 +7,63 @@ const navLinks = [
   { label: "What We Offer", href: "/#unique" },
   { label: "For Brands", href: "/#why-matters" },
   { label: "Insights", href: "/#insights" },
-  { label: "Franchise", href: "franchise" },
+  { label: "Franchise", href: "/franchise" },
 ];
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   const location = useLocation();
   const navigate = useNavigate();
 
+  /* ------------------------- NAVBAR SCROLL EFFECT ------------------------- */
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  /* ---------------------- SINGLE SOURCE OF NAVIGATION --------------------- */
   const handleNavigation = (href: string) => {
     setIsMobileMenuOpen(false);
-    
+
+    // SECTION LINKS (/#section)
     if (href.startsWith("/#")) {
-      const id = href.replace("/#", "");
-      if (location.pathname === "/") {
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-      } else {
-        navigate("/");
-        // Use a timeout to allow the navigation to complete before scrolling
-        setTimeout(() => {
-          document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-        }, 100);
-      }
-    } else {
-      navigate(href);
-      window.scrollTo({ top: 0, behavior: "instant" });
+      const hash = href.replace("/", ""); // "#unique"
+      const id = hash.replace("#", "");
+
+      // Always update URL (so address bar changes)
+      navigate(`/${hash}`, { replace: false });
+
+      // Scroll after URL update & DOM paint
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const el = document.getElementById(id);
+          if (el) {
+            const y =
+              el.getBoundingClientRect().top +
+              window.pageYOffset -
+              80; // navbar height offset
+            window.scrollTo({ top: y, behavior: "smooth" });
+          }
+        });
+      });
+
+      return;
     }
+
+    // NORMAL ROUTES
+    navigate(href);
+    window.scrollTo({ top: 0 });
   };
 
+  /* ------------------------------ APPLY NOW ------------------------------- */
   const handleApplyClick = () => {
-    if (location.pathname === "/franchise") {
-       window.location.href = "https://forms.google.com/your-form-url";
-    } else {
-       handleNavigation("/#early-access");
-    }
+    handleNavigation("/#early-access");
   };
 
+  /* -------------------------------- RENDER -------------------------------- */
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -62,24 +74,30 @@ const Navbar = () => {
     >
       <div className="container px-6">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2" onClick={() => window.scrollTo(0,0)}>
-            <img src="https://setmycart.blob.core.windows.net/smcstage//12-27-2025/678db332160d47b4ad3aa6811d91aac2/WhatsApp_Image_2025-12-27_at_12.21.44_PM-removebg-preview.png" alt="The Conscious Life" className="h-10 w-10" />
-            <span className="font-display text-lg text-foreground hidden sm:block">
+          {/* LOGO */}
+          <Link
+            to="/"
+            onClick={() => window.scrollTo(0, 0)}
+            className="flex items-center gap-2"
+          >
+            <img
+              src="https://setmycart.blob.core.windows.net/smcstage//12-27-2025/678db332160d47b4ad3aa6811d91aac2/WhatsApp_Image_2025-12-27_at_12.21.44_PM-removebg-preview.png"
+              alt="The Conscious Life"
+              className="h-10 w-10"
+            />
+            <span className="hidden sm:block font-display text-lg">
               The Conscious Life
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* DESKTOP NAV */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
+            {navLinks.map((link) =>
               link.href.startsWith("/#") ? (
                 <button
                   key={link.label}
                   onClick={() => handleNavigation(link.href)}
-                  className={`text-sm font-medium transition-colors ${
-                      location.pathname === link.href ? "text-primary" : "text-muted-foreground hover:text-foreground"
-                  }`}
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {link.label}
                 </button>
@@ -87,44 +105,39 @@ const Navbar = () => {
                 <Link
                   key={link.label}
                   to={link.href}
-                  className={`text-sm font-medium transition-colors ${
-                      location.pathname === link.href ? "text-primary" : "text-muted-foreground hover:text-foreground"
-                  }`}
-                  onClick={() => window.scrollTo(0, 0)}
+                  onClick={() => handleNavigation(link.href)}
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {link.label}
                 </Link>
               )
-            ))}
-            <Button
-              variant="hero"
-              size="sm"
-              onClick={handleApplyClick}
-            >
+            )}
+
+            <Button variant="hero" size="sm" onClick={handleApplyClick}>
               Apply Now
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* MOBILE TOGGLE */}
           <button
-            className="md:hidden p-2 text-foreground"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden p-2"
+            onClick={() => setIsMobileMenuOpen((p) => !p)}
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMobileMenuOpen ? <X /> : <Menu />}
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* MOBILE MENU */}
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-background/98 backdrop-blur-md shadow-elevated border-t border-border/50">
+          <div className="md:hidden absolute top-full left-0 right-0 bg-background/98 backdrop-blur-md shadow-elevated border-t">
             <div className="container px-6 py-6 space-y-4">
-              {navLinks.map((link) => (
+              {navLinks.map((link) =>
                 link.href.startsWith("/#") ? (
                   <button
                     key={link.label}
                     onClick={() => handleNavigation(link.href)}
-                    className="block w-full text-left py-3 text-foreground font-medium border-b border-border/30"
+                    className="block w-full text-left py-3 font-medium border-b"
                   >
                     {link.label}
                   </button>
@@ -132,16 +145,14 @@ const Navbar = () => {
                   <Link
                     key={link.label}
                     to={link.href}
-                    onClick={() => {
-                      setIsMobileMenuOpen(false);
-                      window.scrollTo(0, 0);
-                    }}
-                    className="block w-full text-left py-3 text-foreground font-medium border-b border-border/30"
+                    onClick={() => handleNavigation(link.href)}
+                    className="block w-full text-left py-3 font-medium border-b"
                   >
                     {link.label}
                   </Link>
                 )
-              ))}
+              )}
+
               <Button
                 variant="hero"
                 className="w-full mt-4"

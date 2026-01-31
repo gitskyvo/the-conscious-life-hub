@@ -12,6 +12,13 @@ dist
 dist-ssr
 *.local
 
+# Custom build artifacts and zips
+distt.zip
+dist.zip
+dist-v*
+version*
+
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
