@@ -4,9 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: "What We Offer", href: "/#unique" },
-  { label: "For Brands", href: "/#why-matters" },
-  { label: "Insights", href: "/#insights" },
+  { label: "Why TCL", href: "/#why-matters" },
+  { label: "Verticals", href: "/#verticals" },
+  { label: "What Makes TCL Different", href: "/#unique" },
+  { label: "Retail with a Brain", href: "/#insights" },
+  { label: "Conscious Club", href: "/#conscious-club" },
   { label: "Franchise", href: "/franchise" },
 ];
 
@@ -20,6 +22,7 @@ const Navbar = () => {
   /* ------------------------- NAVBAR SCROLL EFFECT ------------------------- */
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 50);
+    onScroll();
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -85,19 +88,29 @@ const Navbar = () => {
               alt="The Conscious Life"
               className="h-10 w-10"
             />
-            <span className="hidden sm:block font-display text-lg">
+            <span
+              className={`hidden sm:block font-display text-lg transition-colors duration-300 ${
+                isScrolled ? "text-foreground" : "text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]"
+              }`}
+            >
               The Conscious Life
             </span>
           </Link>
 
           {/* DESKTOP NAV */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) =>
-              link.href.startsWith("/#") ? (
+            {navLinks.map((link) => {
+              const linkClasses = `text-sm font-medium transition-colors duration-300 ${
+                isScrolled
+                  ? "text-muted-foreground hover:text-foreground"
+                  : "text-white/90 hover:text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]"
+              }`;
+
+              return link.href.startsWith("/#") ? (
                 <button
                   key={link.label}
                   onClick={() => handleNavigation(link.href)}
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  className={linkClasses}
                 >
                   {link.label}
                 </button>
@@ -106,12 +119,12 @@ const Navbar = () => {
                   key={link.label}
                   to={link.href}
                   onClick={() => handleNavigation(link.href)}
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  className={linkClasses}
                 >
                   {link.label}
                 </Link>
-              )
-            )}
+              );
+            })}
 
             <Button variant="hero" size="sm" onClick={handleApplyClick}>
               Apply Now
@@ -120,7 +133,9 @@ const Navbar = () => {
 
           {/* MOBILE TOGGLE */}
           <button
-            className="md:hidden p-2"
+            className={`md:hidden p-2 transition-colors duration-300 ${
+              isScrolled ? "text-foreground" : "text-white"
+            }`}
             onClick={() => setIsMobileMenuOpen((p) => !p)}
             aria-label="Toggle menu"
           >
@@ -137,7 +152,7 @@ const Navbar = () => {
                   <button
                     key={link.label}
                     onClick={() => handleNavigation(link.href)}
-                    className="block w-full text-left py-3 font-medium border-b"
+                    className="block w-full text-left py-3 font-medium border-b text-foreground"
                   >
                     {link.label}
                   </button>
@@ -146,7 +161,7 @@ const Navbar = () => {
                     key={link.label}
                     to={link.href}
                     onClick={() => handleNavigation(link.href)}
-                    className="block w-full text-left py-3 font-medium border-b"
+                    className="block w-full text-left py-3 font-medium border-b text-foreground"
                   >
                     {link.label}
                   </Link>

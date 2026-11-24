@@ -14,8 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["DM Sans", "system-ui", "sans-serif"],
-        display: ["Playfair Display", "Georgia", "serif"],
+        sans: ["'Public Sans'", "system-ui", "-apple-system", "sans-serif"],
+        display: ["'Inter'", "system-ui", "-apple-system", "sans-serif"],
+        heading: ["'Inter'", "system-ui", "-apple-system", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -23,6 +24,12 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        forest: "#1e6b3a",
+        lime: "#73e341",
+        deep: "#101b0d",
+        sage: "#eaf0e2",
+        "sage-light": "#f6faf2",
+        "forest-dark": "#101b0d",
         sand: "hsl(var(--sand))",
         olive: "hsl(var(--olive))",
         clay: "hsl(var(--clay))",
