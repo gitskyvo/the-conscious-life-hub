@@ -12,7 +12,7 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <main className="min-h-screen bg-[#FAFBF8] text-deep font-sans selection:bg-lime selection:text-deep">
+    <main className="min-h-screen bg-[#FAFBF8] text-deep font-sans selection:bg-lime selection:text-deep overflow-x-hidden w-full">
       <Navbar />
       <HeroSection />
       <WhyMattersSection />
